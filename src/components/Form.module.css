@@ -1,0 +1,39 @@
+.container{
+    background-color: rgb(101, 101, 194);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    z-index: 1;
+  }
+
+  .bottom{
+    width: 100vw;
+    height: 65vh;
+    background-color: rgb(231, 223, 195);
+    padding: 10px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    z-index: 0;
+  }
+
+  .logocontainer{
+    position: relative
+  }
+
+  .logo{
+    max-width: 300px;
+    margin-left: 200px;
+    position: relative; 
+    top: -50px
+    
+    
+  }
+
+  .participante{
+    max-width: 400px;
+    position: absolute;
+    top: -115px;
+    left: 700px;
+    z-index: 1
+  }
