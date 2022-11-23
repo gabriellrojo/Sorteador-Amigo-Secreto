@@ -7,6 +7,7 @@ import sacola from "../public/images/sacolas.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { linkSync } from 'fs'
 
 
 type Props = {}
@@ -16,6 +17,7 @@ const Form = (props: Props) => {
     const [list, setList] = useState<string[]>([])
     const [error, setError] = useState<boolean>(false)
     const [person, setPerson] = useState<string>("")
+    const [show, setShow] = useState<boolean>(true)
     const ref = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
@@ -42,6 +44,7 @@ const Form = (props: Props) => {
         setPerson(person)
         const newList = list.filter(name => name != person)
         setList(newList)
+        setShow(false)
     }
   
   return (
@@ -59,11 +62,11 @@ const Form = (props: Props) => {
                 {error&& <p>Este nome já foi incluido na lista</p>}
                 {list&& list.length > 0 ? list.map((name: string) => 
                     <>
-                        <p className={styles.txt}>{name}</p>
-                    </>) : (<p className={styles.txt}>Não há nenhum nome na lista</p>)}
+                        {show&& <p className={styles.txt}>{name}</p>}
+                    </>) : (show&& <p className={styles.txt}>Não há nenhum nome na lista</p>)}
             </form>
             <div className={styles.containerfinal}>
-                {list&& list.length > 0? 
+                {list&& list.length > 0&& list.length % 2 == 0 ?  
                     <div>
                         <FontAwesomeIcon className={styles.play} icon={faPlayCircle}/>
                         <button className={styles.btn2} onClick={handleClick}>Sortear</button>
@@ -75,7 +78,7 @@ const Form = (props: Props) => {
                     ) }
                 <img className={styles.sacola} src={sacola} alt="sacola" />
             </div>
-            <p>{person}</p>
+            {list&& list.length > 0 ? (<p>{person}</p>) : (<p>Todos os nomes foram sorteador</p>)}
         </div>
     </div>
   )
