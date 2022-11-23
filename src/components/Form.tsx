@@ -3,6 +3,11 @@ import { useState, FormEvent, useRef } from 'react'
 import styles from "./Form.module.css"
 import logo from "../public/images/logo.png"
 import arte from "../public/images/participante.png"
+import sacola from "../public/images/sacolas.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+
 
 type Props = {}
 
@@ -41,21 +46,35 @@ const Form = (props: Props) => {
   
   return (
     <div className={styles.container}>
-        <div className={styles.logocontainer}>
+        <div className={styles.logo}>
             <img className={styles.logo}  src={logo} alt="titulo" />
             <img className={styles.participante}  src={arte} alt="titulo" />    
         </div>
         <div className={styles.bottom}>
+            <h2>Vamos começar</h2>
             <form onSubmit={handleSubmit}>
-                <input ref={ref} type="text" placeholder="Digite o nome" value={name} onChange={(e) => setName(e.target.value)} />
-                <input type="submit" value="Adicionar" disabled={!name} />
+                <FontAwesomeIcon className={styles.add} icon={faUserPlus}/>
+                <input className={styles.input} ref={ref} type="text" placeholder="Digite o nome" value={name} onChange={(e) => setName(e.target.value)} />
+                <input className={styles.btn} type="submit" value="Adicionar" disabled={!name} />
                 {error&& <p>Este nome já foi incluido na lista</p>}
                 {list&& list.length > 0 ? list.map((name: string) => 
                     <>
-                        <p key={"key"}>{name}</p>
-                    </>) : (<p>Não há nenhum nome na lista</p>)}
+                        <p className={styles.txt}>{name}</p>
+                    </>) : (<p className={styles.txt}>Não há nenhum nome na lista</p>)}
             </form>
-            {list&& list.length > 2? <button onClick={handleClick}>Sortear</button> : <button disabled>Sortear</button> }
+            <div className={styles.containerfinal}>
+                {list&& list.length > 0? 
+                    <div>
+                        <FontAwesomeIcon className={styles.play} icon={faPlayCircle}/>
+                        <button className={styles.btn2} onClick={handleClick}>Sortear</button>
+                    </div> : (
+                    <div>
+                        <FontAwesomeIcon className={styles.play} icon={faPlayCircle}/>
+                        <button className={styles.btn2} disabled>Sortear</button>
+                    </div>
+                    ) }
+                <img className={styles.sacola} src={sacola} alt="sacola" />
+            </div>
             <p>{person}</p>
         </div>
     </div>
