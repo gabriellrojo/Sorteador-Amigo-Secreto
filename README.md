@@ -9,7 +9,7 @@ Projeto criado com o intuido de realizar testes através do Jest e reforçar os 
 
 # O Desafio
 
-Aproveitando que as festas de final de ano estão próximas, resolvi criar uma interface que realiza o sorteio para um amigo secreto.
+Aproveitando que as festas de final de ano estão próximas, resolvi criar uma interface que realiza o sorteio para amigos secretos.
 O principal intuito do projeto foi realizar testes através do JEST. Foram criados 7 testes ao todo. 
 
 # Deploy
