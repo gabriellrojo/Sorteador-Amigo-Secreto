@@ -49,7 +49,7 @@ const Form = (props: Props) => {
   
   return (
     <div className={styles.container}>
-        <div className={styles.logo}>
+        <div className={styles.logocontainer}>
             <img className={styles.logo}  src={logo} alt="titulo" />
             <img className={styles.participante}  src={arte} alt="titulo" />    
         </div>
@@ -78,7 +78,7 @@ const Form = (props: Props) => {
                     ) }
                 <img className={styles.sacola} src={sacola} alt="sacola" />
             </div>
-            {list&& list.length > 0 ? (<p>{person}</p>) : (<p>Todos os nomes foram sorteador</p>)}
+            {list&& list.length > 0&& (<p>{person}</p>)}
         </div>
     </div>
   )

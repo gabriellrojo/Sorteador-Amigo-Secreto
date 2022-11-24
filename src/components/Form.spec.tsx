@@ -1,8 +1,9 @@
 import { render, screen, waitFor,  } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
+import { debug } from "util"
 import Form from "./Form"
 
-describe("teste de componente", () => {
+describe("component test", () => {
     it("should be there and empty", () => {
         render(<Form />)
         
@@ -61,16 +62,16 @@ describe("teste de componente", () => {
         })
     })
     
-    it("should not pick if there less than 3", () => {
+    it("should not pick if there is no people", () => {
         render(<Form />)
 
         const btn = screen.getByText("Sortear")
         expect(btn).toBeDisabled()
     })
-    
-    it("if there are three or more, pick", () => {
-        render(<Form />)
 
+    it("should not render if list.length % 2 != 0", () => {
+        render(<Form/>)
+        
         const btn = screen.getByText("Adicionar")
         const input = screen.getByPlaceholderText("Digite o nome")
         userEvent.type(input, "nome1")
@@ -92,12 +93,43 @@ describe("teste de componente", () => {
         expect(nome3).toBeInTheDocument()
 
         const btnSort = screen.getByText("Sortear")
+
+        expect(btnSort).toBeDisabled()
+    
+    })
+
+    it("should render if list.length % 2 == 0", () => {
+        render(<Form/>)
         
+        const btn = screen.getByText("Adicionar")
+        const input = screen.getByPlaceholderText("Digite o nome")
+        userEvent.type(input, "nome1")
+        userEvent.click(btn)
+
+        const nome1 = screen.getByText("nome1")
+        expect(nome1).toBeInTheDocument()
+
+        userEvent.type(input, "nome2")
+        userEvent.click(btn)
+
+        const nome2 = screen.getByText("nome2")
+        expect(nome2).toBeInTheDocument()
+
+        const btnSort = screen.getByText("Sortear")
+
         expect(btnSort).toBeEnabled()
 
         userEvent.click(btnSort)
 
-        expect(nome1 || nome2 || nome3).toBeInTheDocument()
+        const nome1Show = screen.queryByText("nome1")
+        const nome2Show = screen.queryByText("nome2")
+
+
+        waitFor(() => {
+            expect(nome1Show).toBeInTheDocument()
+            expect(nome2Show).toBeInTheDocument()
+        })
     
     })
+    
 })

@@ -20,14 +20,14 @@
   }
 
   .logocontainer{
-    position: relative
+    position: relative;
   }
 
   .logo{
     max-width: 300px;
-    margin-left: 130px;
-    position: relative; 
-    top: -30px
+    left: 130px;
+    position: absolute; 
+    top: -170px
     
     
   }
@@ -35,7 +35,7 @@
   .participante{
     max-width: 400px;
     position: absolute;
-    top: -85px;
+    top: -220px;
     left: 500px;
     z-index: 1
   }
@@ -111,4 +111,69 @@
 
   .sacola{
     max-width: 100px;
+  }
+
+  @media (max-width: 500px) {
+    
+    .container{
+      min-width: 120vw;
+      min-height: 120vh
+    }
+
+    .bottom{
+      min-width: 120vw;
+      min-height: 90vh
+    }
+
+    .participante{
+      display: none
+    }
+
+    .logocontainer{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo{
+      margin-right: 100px;
+      top: -190px;
+      left: 90px;
+    }
+    .add{
+      margin-top: 20px;
+      margin-left: 20px
+      
+    }
+    .input {
+      width: 75vw;
+      padding: 20px;
+      padding-left: 50px;
+    }
+  
+    .btn{
+      width: 30vw;
+      padding: 20px;
+    }
+
+    .containerfinal{
+      display: flex;
+      flex-direction: column;
+      width: 40vw;
+      
+    }
+    .play{
+      display: none
+
+    }
+
+    .btn2{
+      height: 7vh;
+      width: 105vw
+     
+    }
+
+    .sacola{
+      display: none
+    }
   }
